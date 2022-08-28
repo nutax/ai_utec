@@ -1,5 +1,3 @@
-import pandas as pd
-import numpy as np
 from ai_utec import gradient_descent
 from ai_utec import utility
 
@@ -12,7 +10,7 @@ x_train, y_train, x_vt, y_vt = utility.random_split(x = x, y = y, p = 0.7)
 
 x_val, y_val, x_test, y_test = utility.random_split(x = x_vt, y = y_vt, p = 0.66)
 
-predict, loss_train, loss_val = gradient_descent.train(x_train = x_train,
+w, predict, loss_train, loss_val = gradient_descent.train(x_train = x_train,
                                                        y_train = y_train,
                                                        x_val = x_val,
                                                        y_val = y_val,
@@ -30,5 +28,4 @@ predict, loss_train, loss_val = gradient_descent.train(x_train = x_train,
                                                        batch_f = utility.random_batch_gen(4))
 
 
-print(x)
-print(y)
+print(w)

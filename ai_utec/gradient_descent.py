@@ -35,6 +35,6 @@ def train(x_train, y_train, x_val, y_val, epochs, alpha, norm_f, denorm_f, extra
         y = denorm_f(y_n)
         return y
 
-    return predict, loss_train, loss_val
+    return w, predict, loss_train, loss_val
 
 

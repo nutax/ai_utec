@@ -31,11 +31,11 @@ def random_weights(n):
         return np.random.rand(n)
 
 def weighted_sum(x, w):
-        return np.matmul(x,w.T)
+        return np.matmul(x,w)
 
 
 def difference(ans, prd):
-        return ans - prd
+        return (ans.T - prd)[0]
 
 def lm_loss(x, y, w, diff):
         return np.dot(diff, diff)/diff.shape[0]
