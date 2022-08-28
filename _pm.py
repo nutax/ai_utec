@@ -1,7 +1,6 @@
 from ai_utec import gradient_descent
 from ai_utec import utility
 import numpy as np
-import pandas as pd
 
 
 x = np.arange(0,2*np.pi,0.2).reshape((-1, 1))
@@ -27,3 +26,5 @@ w, predict, loss_train, loss_val = gradient_descent.train(x_train = x_train,
                                                           batch_f = utility.random_batch_gen(4))
 
 print(utility.r_squared(y, predict(x)))
+
+
