@@ -71,3 +71,9 @@ def poly_matrix_gen(p):
         def poly_matrix(x):
                 return np.apply_along_axis(poly_vec, 1, x)
         return poly_matrix
+
+def sigmoid(x):
+        return 1/(1 + np.exp(-x))
+
+def sigmoid_weighted_sum(x, w):
+        return sigmoid(weighted_sum(x,w))
