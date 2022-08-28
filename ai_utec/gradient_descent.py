@@ -29,10 +29,10 @@ def train(x_train, y_train, x_val, y_val, epochs, alpha, norm_f, denorm_f, extra
         loss_val[i] = loss_f(x_vb, y_vb, w, diff_vb)
 
     def predict(x):
-        x_n = norm_f(x)
+        x_n = norm_f(x, x_min, x_max)
         x_n = extra_f(x_n)
         y_n = hypo_f(x_n, w)
-        y = denorm_f(y_n)
+        y = denorm_f(y_n, y_min, y_max)
         return y
 
     return w, predict, loss_train, loss_val

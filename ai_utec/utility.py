@@ -52,3 +52,9 @@ def random_batch_gen(size):
                 batch_i = indices[:size]
                 return x[batch_i,:], y[batch_i,:]
         return random_batch
+
+def r_squared(ans, prd):
+        mean = ans.mean()
+        ans_dif = mean - ans
+        prd_dif = mean - prd
+        return sum(prd_dif**2)/sum(ans_dif**2)
