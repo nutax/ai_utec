@@ -7,7 +7,7 @@ def read_csv(path, x_cols, y_cols):
         y = (dataset[y_cols]).to_numpy()
         return x, y
 
-def split(x, y, p):
+def random_split(x, y, p):
         m = x.shape[0]
         train_p = int(m*p)
         indices = np.random.permutation(m)
@@ -22,3 +22,33 @@ def norm(x, xmin, xmax):
 
 def denorm(x, xmin, xmax):
         return x*(xmax-xmin) + xmin
+
+def add_bias(x):
+        bias_col = np.ones((x.shape[0],1))
+        return np.append(bias_col, x, 1)
+
+def random_weights(n):
+        return np.random.rand(n)
+
+def weighted_sum(x, w):
+        return np.matmul(x,w.T)
+
+
+def difference(ans, prd):
+        return ans - prd
+
+def lm_loss(x, y, w, diff):
+        return np.dot(diff, diff)/diff.shape[0]
+
+def lm_delta(x, y, w, diff):
+        return np.dot(-x, diff)/diff.shape[0]
+
+def substract_delta(w, dw, alpha):
+        return w - alpha*dw
+
+def random_batch_gen(size):
+        def random_batch(x,y):
+                indices = np.random.permutation(x.shape[0])
+                batch_i = indices[:size]
+                return x[batch_i,:], y[batch_i,:]
+        return random_batch

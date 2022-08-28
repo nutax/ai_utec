@@ -2,7 +2,7 @@ import numpy as np
 
 def train(x_train, y_train, x_val, y_val, epochs, alpha, norm_f, denorm_f, extra_f, winit_f, hypo_f, diff_f, loss_f, delta_f, update_f, batch_f):
 
-    loss_tb, loss_vb = np.zeros(epochs), np.zeros(epochs)
+    loss_train, loss_val = np.zeros(epochs), np.zeros(epochs)
 
     x_min, x_max = x_train.min(axis=0), x_train.max(axis=0)
     y_min, y_max = y_train.min(axis=0), y_train.max(axis=0)
@@ -13,7 +13,7 @@ def train(x_train, y_train, x_val, y_val, epochs, alpha, norm_f, denorm_f, extra
     x_tn = extra_f(x_tn)
     x_vn = extra_f(x_vn)
 
-    w = winit_f()
+    w = winit_f(x_tn.shape[1])
 
     for i in range(epochs):
         x_tb, y_tb = batch_f(x_tn, y_tn)
@@ -25,8 +25,8 @@ def train(x_train, y_train, x_val, y_val, epochs, alpha, norm_f, denorm_f, extra
         dw = delta_f(x_tb, y_tb, w, diff_tb)
         w = update_f(w, dw, alpha)
         
-        loss_tb[i] = loss_f(x_tb, y_tb, w, diff_tb)
-        loss_vb[i] = loss_f(x_vb, y_vb, w, diff_vb)
+        loss_train[i] = loss_f(x_tb, y_tb, w, diff_tb)
+        loss_val[i] = loss_f(x_vb, y_vb, w, diff_vb)
 
     def predict(x):
         x_n = norm_f(x)
@@ -35,6 +35,6 @@ def train(x_train, y_train, x_val, y_val, epochs, alpha, norm_f, denorm_f, extra
         y = denorm_f(y_n)
         return y
 
-    return predict, loss_tb, loss_vb
+    return predict, loss_train, loss_val
 
 
