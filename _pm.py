@@ -7,9 +7,6 @@ import pandas as pd
 x = np.arange(0,2*np.pi,0.2).reshape((-1, 1))
 y =  np.array([ np.sin(e + np.random.normal(0,0.1) ) for e  in x]).reshape((-1, 1))
 
-print(x)
-
-
 x_train, y_train, x_val, y_val, x_test, y_test = utility.classic_split(x,y)
 
 w, predict, loss_train, loss_val = gradient_descent.train(x_train = x_train,

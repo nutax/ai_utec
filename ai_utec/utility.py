@@ -67,7 +67,7 @@ def classic_split(x,y):
 
 def poly_matrix_gen(p):
         def poly_vec(x):
-                return np.array([x**i for i in range(p+1)])
+                return np.array([x**i for i in range(p+1)]).reshape(-1)
         def poly_matrix(x):
-                return np.apply_along_axis(poly_vec, 0, x)
+                return np.apply_along_axis(poly_vec, 1, x)
         return poly_matrix
