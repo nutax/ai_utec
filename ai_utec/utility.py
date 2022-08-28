@@ -58,3 +58,16 @@ def r_squared(ans, prd):
         ans_dif = mean - ans
         prd_dif = mean - prd
         return sum(prd_dif**2)/sum(ans_dif**2)
+
+
+def classic_split(x,y):
+        x_train, y_train, x_vt, y_vt = random_split(x = x, y = y, p = 0.7)
+        x_val, y_val, x_test, y_test = random_split(x = x_vt, y = y_vt, p = 0.66)
+        return x_train, y_train, x_val, y_val, x_test, y_test
+
+def poly_matrix_gen(p):
+        def poly_vec(x):
+                return np.array([x**i for i in range(p+1)])
+        def poly_matrix(x):
+                return np.apply_along_axis(poly_vec, 0, x)
+        return poly_matrix
