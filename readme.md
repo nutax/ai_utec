@@ -8,4 +8,4 @@ ai_utec : transversal / trascendental codes
 
 data : input file for examples
 
-singles.py : examples, specific use cases
+_singles.py : examples, specific use cases
