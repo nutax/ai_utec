@@ -7,7 +7,7 @@ def read_csv(path, x_cols, y_cols):
         y = (dataset[y_cols]).to_numpy()
         return x, y
 
-def split_df(x, y, p):
+def split(x, y, p):
         m = x.shape[0]
         train_p = int(m*p)
         indices = np.random.permutation(m)
