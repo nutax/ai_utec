@@ -8,3 +8,10 @@ def split_df(x, y, p):
         x1, x2 = x[train_i,:], x[test_i,:]
         y1, y2 = y[train_i,:], y[test_i,:]
         return x1, y1, x2, y2
+
+def norm(x, xmin, xmax):
+        return (x-xmin)/(xmax-xmin)
+
+
+def denorm(x, xmin, xmax):
+        return x*(xmax-xmin) + xmin
