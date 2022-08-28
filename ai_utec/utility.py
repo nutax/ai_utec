@@ -11,7 +11,7 @@ def random_split(x, y, p):
         m = x.shape[0]
         train_p = int(m*p)
         indices = np.random.permutation(m)
-        test_i, train_i = indices[:train_p], indices[train_p:]
+        train_i, test_i = indices[:train_p], indices[train_p:]
         x1, x2 = x[train_i,:], x[test_i,:]
         y1, y2 = y[train_i,:], y[test_i,:]
         return x1, y1, x2, y2
@@ -38,10 +38,10 @@ def difference(ans, prd):
         return (ans.T - prd)[0]
 
 def lm_loss(x, y, w, diff):
-        return np.dot(diff, diff)/diff.shape[0]
+        return np.dot(diff, diff)/(2*diff.shape[0])
 
 def lm_delta(x, y, w, diff):
-        return np.dot(-x, diff)/diff.shape[0]
+        return np.matmul(diff, -x)/diff.shape[0]
 
 def substract_delta(w, dw, alpha):
         return w - alpha*dw

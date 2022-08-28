@@ -25,7 +25,7 @@ w, predict, loss_train, loss_val = gradient_descent.train(x_train = x_train,
                                                        loss_f = utility.lm_loss,
                                                        delta_f = utility.lm_delta,
                                                        update_f = utility.substract_delta,
-                                                       batch_f = utility.random_batch_gen(4))
+                                                       batch_f = utility.random_batch_gen(2))
 
 
 print(w)
