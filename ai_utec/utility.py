@@ -1,4 +1,11 @@
 import numpy as np
+import pandas as pd
+
+def read_csv(path, x_cols, y_cols):
+        dataset = pd.read_csv(path)
+        x = (dataset[x_cols]).to_numpy()
+        y = (dataset[y_cols]).to_numpy()
+        return x, y
 
 def split_df(x, y, p):
         m = x.shape[0]
