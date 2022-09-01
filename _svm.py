@@ -2,6 +2,8 @@ from ai_utec import gradient_descent
 from ai_utec import utility
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+
 
 x, y = utility.read_csv(path = 'data/iris.csv',
                         x_cols = ['sepal_length','sepal_width'],
@@ -21,8 +23,8 @@ w, predict, loss_train, loss_val = gradient_descent.train(x_train = x_train,
                                                           y_train = y_train,
                                                           x_val = x_val,
                                                           y_val = y_val,
-                                                          epochs = 1000000,
-                                                          alpha = 0.001,
+                                                          epochs = 10000,
+                                                          alpha = 0.01,
                                                           norm_f = utility.norm,
                                                           denorm_f = utility.denorm,
                                                           extra_f = utility.add_bias,
@@ -35,8 +37,6 @@ w, predict, loss_train, loss_val = gradient_descent.train(x_train = x_train,
                                                           batch_f = utility.random_batch_gen(8))
 
 y_prd = predict(x)
-r2 = utility.r_squared(y, y_prd)
 
 print(y.reshape(-1))
 print(np.array([int(e) for e in np.round(y_prd.reshape(-1))]))
-print(r2)

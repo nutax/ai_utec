@@ -22,11 +22,12 @@ def train(x_train, y_train, x_val, y_val, epochs, alpha, norm_f, denorm_f, extra
         diff_tb = diff_f(y_tb, hypo_f(x_tb, w))
         diff_vb = diff_f(y_vb, hypo_f(x_vb, w))
 
+        loss_train[i] = loss_f(x_tb, y_tb, w, diff_tb)
+        loss_val[i] = loss_f(x_vb, y_vb, w, diff_vb)
+
         dw = delta_f(x_tb, y_tb, w, diff_tb)
         w = update_f(w, dw, alpha)
         
-        loss_train[i] = loss_f(x_tb, y_tb, w, diff_tb)
-        loss_val[i] = loss_f(x_vb, y_vb, w, diff_vb)
 
     def predict(x):
         x_n = norm_f(x, x_min, x_max)
